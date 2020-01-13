@@ -16,10 +16,10 @@ class Dragimageview: UIImageView {
         
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             startLocation = touches.first?.location(in: self)
-        }
+            
+    }
         
-        
-        override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+            override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
             let currentLocation = touches.first?.location(in: self)
             
             let dx = currentLocation!.x - startLocation!.x
@@ -31,16 +31,18 @@ class Dragimageview: UIImageView {
 
                let halfx = self.bounds.midX
                      newCenter.x = max(halfx, newCenter.x)
-                     newCenter.x = min(self.superview!.bounds.width - halfx, newCenter.x)
+                newCenter.x = min(self.superview!.bounds.width - halfx, newCenter.x,250)
                      
                      let halfy = self.bounds.midY
                      newCenter.y = max(halfy, newCenter.y)
-                     newCenter.y = min(self.superview!.bounds.height - halfy, newCenter.y)
+                newCenter.y = min(self.superview!.bounds.height - halfy, newCenter.y,180)
             
             self.center = newCenter
              self.myDelegate?.changeSomething()
         }
         
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+    }
 
     }

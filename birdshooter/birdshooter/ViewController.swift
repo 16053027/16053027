@@ -15,12 +15,16 @@ protocol subviewDelegate {
 class ViewController: UIViewController, subviewDelegate {
     
     var dynamicAnimator: UIDynamicAnimator!
-    var dynamicItemBehavior: UIDynamicItemBehavior!
+    var collisionBehavior: UICollisionBehavior!
+    var gravityBehavior: UIGravityBehavior!
     
      func changeSomething() {
     }
     
     @IBOutlet weak var targetview: Dragimageview!
+    @IBOutlet weak var ball1: UIImageView!
+    @IBOutlet weak var ball2: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +42,12 @@ class ViewController: UIViewController, subviewDelegate {
         
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         
-        dynamicItemBehavior = UIDynamicItemBehavior(items: [ball])
-        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 0, y: 120), for: ball)
-        dynamicAnimator.addBehavior(dynamicItemBehavior)
+        gravityBehavior = UIGravityBehavior(items: [ball1])
+        dynamicAnimator.addBehavior(gravityBehavior)
+        
+        collisionBehavior = UICollisionBehavior(items: [ball1, ball2])
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+        dynamicAnimator.addBehavior(collisionBehavior)
         
     }
 
