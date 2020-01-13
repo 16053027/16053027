@@ -18,17 +18,22 @@ class ViewController: UIViewController, subviewDelegate {
     var collisionBehavior: UICollisionBehavior!
     var gravityBehavior: UIGravityBehavior!
     
+    
      func changeSomething() {
     }
     
     @IBOutlet weak var targetview: Dragimageview!
-    @IBOutlet weak var ball1: UIImageView!
-    @IBOutlet weak var ball2: UIImageView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        
+        
+        
+        
         
         targetview.myDelegate = self
         
@@ -39,20 +44,37 @@ class ViewController: UIViewController, subviewDelegate {
         ball.frame = CGRect(x:100, y: 100, width: 30, height: 50)
         
          self.view.addSubview(ball)
+   
         
-        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
+        let bird = UIImageView(image: nil)
         
-        gravityBehavior = UIGravityBehavior(items: [ball1])
+        bird.image = UIImage(named:"bird1.png")
+        
+        bird.frame = CGRect(x:110, y:550, width: 50, height:70)
+        
+         self.view.addSubview(bird)
+        
+        
+         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
+                      
+        gravityBehavior = UIGravityBehavior(items: [ball])
         dynamicAnimator.addBehavior(gravityBehavior)
+                      
+    collisionBehavior = UICollisionBehavior(items: [ball])
+    collisionBehavior.translatesReferenceBoundsIntoBoundary = true
+    dynamicAnimator.addBehavior(collisionBehavior)
+                      
+       
+collisionBehavior.addBoundary(withIdentifier: "barrier" as NSCopying,
+        for: UIBezierPath(rect: bird.frame))
+    
         
-        collisionBehavior = UICollisionBehavior(items: [ball1, ball2])
-        collisionBehavior.translatesReferenceBoundsIntoBoundary = true
-        dynamicAnimator.addBehavior(collisionBehavior)
+        
         
     }
-
     override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
+    
+        super.didReceiveMemoryWarning()
 
 }
 
