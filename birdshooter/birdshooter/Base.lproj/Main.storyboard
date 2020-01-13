@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="aim.png" translatesAutoresizingMaskIntoConstraints="NO" id="elH-1S-YgY" customClass="Dragimageview" customModule="birdshooter" customModuleProvider="target">
-                                <rect key="frame" x="116" y="157" width="240" height="128"/>
+                                <rect key="frame" x="88" y="129" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

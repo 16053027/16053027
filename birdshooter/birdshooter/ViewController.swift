@@ -13,7 +13,10 @@ protocol subviewDelegate {
 }
 
 class ViewController: UIViewController, subviewDelegate {
-
+    
+    var dynamicAnimator: UIDynamicAnimator!
+    var dynamicItemBehavior: UIDynamicItemBehavior!
+    
      func changeSomething() {
     }
     
@@ -25,13 +28,20 @@ class ViewController: UIViewController, subviewDelegate {
         
         targetview.myDelegate = self
         
-        let ballview = UIImageView(image: nil)
+        let ball = UIImageView(image: nil)
         
-        ballview.image = UIImage(named: "ball.png")
+        ball.image = UIImage(named: "ball.png")
         
-        ballview.frame = CGRect(x:100, y: 100, width: 30, height: 50)
+        ball.frame = CGRect(x:100, y: 100, width: 30, height: 50)
         
-        self.view.addSubview(ballview)
+         self.view.addSubview(ball)
+        
+        dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
+        
+        dynamicItemBehavior = UIDynamicItemBehavior(items: [ball])
+        self.dynamicItemBehavior.addLinearVelocity(CGPoint(x: 0, y: 120), for: ball)
+        dynamicAnimator.addBehavior(dynamicItemBehavior)
+        
     }
 
     override func didReceiveMemoryWarning() {
